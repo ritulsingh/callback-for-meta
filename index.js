@@ -13,21 +13,8 @@ app.get("/", (req, res) => {
 app.post("/waba-meta", (req, res) => {
     let body = req.body;
 
-    console.log(JSON.stringify(req.body, null, 2));
-
-    if (req.body.object) {
-        if (
-            req.body.entry &&
-            req.body.entry[0].changes &&
-            req.body.entry[0].changes[0] &&
-            req.body.entry[0].changes[0].value.messages &&
-            req.body.entry[0].changes[0].value.messages[0]
-        )
-            res.sendStatus(200);
-    } else {
-        res.sendStatus(404);
-    }
-});
+    console.log(JSON.stringify(body, null, 2));
+})
 
 app.get("/waba-meta", (req, res) => {
     if (req.query['hub.mode'] === 'subscribe' && req.query['hub.verify_token'] === "ritulsingh") {
