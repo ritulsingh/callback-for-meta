@@ -12,7 +12,9 @@ app.get("/", (req, res) => {
 
 app.post("/waba-meta", (req, res) => {
     let body = req.body;
+    const challenge = request.query['hub.challenge'] || 'OK';
     console.log(JSON.stringify(body, null, 2));
+    reply.status(200).send(challenge)
 })
 
 app.get("/waba-meta", (req, res) => {
