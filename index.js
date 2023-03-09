@@ -31,7 +31,7 @@ app.get("/result", (_req, res) => {
 
 app.get("/result/:requestid", (req, res) => {
     const { requestid } = req.params;
-    const temp = result.findAll((temp) => temp.requestid === requestid);
+    const temp = result.filter((temp) => temp.requestid === requestid);
     res.status(200).send(JSON.stringify(temp))
 })
 
