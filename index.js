@@ -32,7 +32,7 @@ app.get("/result", (_req, res) => {
 app.get("/result/:requestid", (req, res) => {
     const { requestid } = req.params;
     const temp = result.find((temp) => temp.requestid === requestid);
-    res.status(200).send(temp)
+    res.status(200).send(JSON.stringify(temp))
 })
 
 app.get("/waba-meta", (req, res) => {
