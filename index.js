@@ -16,7 +16,7 @@ app.post("/waba-meta", (req, res) => {
     console.log(JSON.stringify(body, null, 2));
     res.status(200).send(challenge)
 })
-let result;
+let result = {};
 app.post("/waba-karix", (req, res) => {
     let body = req.body;
     const challenge = req.query['hub.challenge'] || 'OK';
