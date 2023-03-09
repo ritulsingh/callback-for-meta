@@ -21,7 +21,7 @@ app.post("/waba-karix", (req, res) => {
     let body = req.body;
     const challenge = req.query['hub.challenge'] || 'OK';
     console.log(JSON.stringify(body, null, 2));
-    result += ("," + JSON.parse(body, null, 2))
+    result += ("," + JSON.parse(body))
     res.status(200).send(challenge)
 })
 app.get("/result", (req, res) => {
