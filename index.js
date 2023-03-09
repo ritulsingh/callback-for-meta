@@ -4,6 +4,11 @@ const request = require("request"),
     body_parser = require("body-parser"),
     app = express().use(body_parser.json());
 
+const CyclicDb = require("@cyclic.sh/dynamodb")
+const db = CyclicDb("smoggy-plum-antelopeCyclicDB")
+
+const dbResult = db.collection("callbackResult")
+
 app.listen(3000, () => console.log(`listening on http://localhost:3000`));
 
 app.get("/", (req, res) => {
@@ -17,15 +22,18 @@ app.post("/waba-meta", (req, res) => {
     res.status(200).send(challenge)
 })
 let result = [];
-app.post("/waba-karix", (req, res) => {
+app.post("/waba-karix", async (req, res) => {
     let body = req.body;
     const challenge = req.query['hub.challenge'] || 'OK';
     console.log(JSON.stringify(body, null, 2));
     result = [...result, body];
+    await dbResult.set("result", body)
     res.status(200).send(challenge)
 })
 
-app.get("/result", (_req, res) => {
+app.get("/result", async (_req, res) => {
+    let item = await dbResult.get("result")
+    console.log(item)
     res.status(200).send(result)
 })
 

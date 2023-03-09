@@ -9,6 +9,7 @@
   "author": "ritulsingh",
   "license": "ISC",
   "dependencies": {
+    "@cyclic.sh/dynamodb": "^0.0.33",
     "axios": "^1.3.4",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
