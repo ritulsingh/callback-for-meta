@@ -21,12 +21,18 @@ app.post("/waba-karix", (req, res) => {
     let body = req.body;
     const challenge = req.query['hub.challenge'] || 'OK';
     console.log(JSON.stringify(body, null, 2));
-    console.log(result, "FGHJKL;SDFGHJKL;'");
     result = [...result, body];
     res.status(200).send(challenge)
 })
-app.get("/result", (req, res) => {
+
+app.get("/result", (_req, res) => {
     res.status(200).send(result)
+})
+
+app.get("/result/:requestid", (req, res) => {
+    const { requestid } = req.params;
+    const temp = result.find((temp) => temp.requestid === requestid);
+    res.status(200).send(temp)
 })
 
 app.get("/waba-meta", (req, res) => {
